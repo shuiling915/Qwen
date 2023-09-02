@@ -99,23 +99,23 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
 
 # Note: The default behavior now has injection attack prevention off.
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen-7B-Chat", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen-7B1-Chat", trust_remote_code=True)
 
 # use bf16
-# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B-Chat", device_map="auto", trust_remote_code=True, bf16=True).eval()
+# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B1-Chat", device_map="auto", trust_remote_code=True, bf16=True).eval()
 # use fp16
-# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B-Chat", device_map="auto", trust_remote_code=True, fp16=True).eval()
+# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B1-Chat", device_map="auto", trust_remote_code=True, fp16=True).eval()
 # use cpu only
-# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B-Chat", device_map="cpu", trust_remote_code=True).eval()
+# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B1-Chat", device_map="cpu", trust_remote_code=True).eval()
 # use auto mode, automatically select precision based on the device.
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen-7B-Chat",
+    "Qwen/Qwen-7B1-Chat",
     device_map="auto",
     trust_remote_code=True
 ).eval()
 
 # Specify hyperparameters for generation. But if you use transformers>=4.32.0, there is no need to do this.
-# model.generation_config = GenerationConfig.from_pretrained("Qwen/Qwen-7B-Chat", trust_remote_code=True)
+# model.generation_config = GenerationConfig.from_pretrained("Qwen/Qwen-7B1-Chat", trust_remote_code=True)
 
 # 1st dialogue turn
 response, history = model.chat(tokenizer, "你好", history=None)
@@ -147,22 +147,22 @@ Running Qwen-7B pretrained base model is also simple.
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
 
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen-7B", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen-7B1", trust_remote_code=True)
 # use bf16
-# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B", device_map="auto", trust_remote_code=True, bf16=True).eval()
+# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B1", device_map="auto", trust_remote_code=True, bf16=True).eval()
 # use fp16
-# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B", device_map="auto", trust_remote_code=True, fp16=True).eval()
+# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B1", device_map="auto", trust_remote_code=True, fp16=True).eval()
 # use cpu only
-# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B", device_map="cpu", trust_remote_code=True).eval()
+# model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B1", device_map="cpu", trust_remote_code=True).eval()
 # use auto mode, automatically select precision based on the device.
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen-7B",
+    "Qwen/Qwen-7B1",
     device_map="auto",
     trust_remote_code=True
 ).eval()
 
 # Specify hyperparameters for generation. But if you use transformers>=4.32.0, there is no need to do this.
-# model.generation_config = GenerationConfig.from_pretrained("Qwen/Qwen-7B", trust_remote_code=True)
+# model.generation_config = GenerationConfig.from_pretrained("Qwen/Qwen-7B1", trust_remote_code=True)
 
 inputs = tokenizer('蒙古国的首都是乌兰巴托（Ulaanbaatar）\n冰岛的首都是雷克雅未克（Reykjavik）\n埃塞俄比亚的首都是', return_tensors='pt')
 inputs = inputs.to(model.device)
@@ -226,7 +226,7 @@ Then you can load the quantized model easily and run inference as same as usual:
 
 ```python
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen-7B-Chat-Int4",
+    "Qwen/Qwen-7B1-Chat-Int4",
     device_map="auto",
     trust_remote_code=True
 ).eval()
@@ -361,7 +361,7 @@ Function calling is also supported (but only when `stream=False` for the moment)
 It is simple to run the model on CPU, which requires your specification of device:
 
 ```python
-model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B-Chat", device_map="cpu", trust_remote_code=True).eval()
+model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen-7B1-Chat", device_map="cpu", trust_remote_code=True).eval()
 ```
 
 If you suffer from lack of GPU memory and you would like to run the model on more than 1 GPU, you can use our provided script `utils.py`:

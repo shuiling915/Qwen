@@ -1,5 +1,5 @@
 # coding=utf-8
-# Implements API for Qwen-7B in OpenAI's format. (https://platform.openai.com/docs/api-reference/chat)
+# Implements API for Qwen-7B1 in OpenAI's format. (https://platform.openai.com/docs/api-reference/chat)
 # Usage: python openai_api.py
 # Visit http://localhost:8000/docs for documents.
 
@@ -459,9 +459,8 @@ def _get_args():
         "--server-port", type=int, default=8000, help="Demo server port."
     )
     parser.add_argument(
-        "--server-name", type=str, default="127.0.0.1", help="Demo server name."
+        "--server-name", type=str, default="0.0.0.0", help="Demo server name."
     )
-
     args = parser.parse_args()
     return args
 

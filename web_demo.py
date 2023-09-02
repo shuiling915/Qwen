@@ -15,7 +15,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
 
 
-DEFAULT_CKPT_PATH = 'Qwen/Qwen-7B-Chat'
+DEFAULT_CKPT_PATH = 'Qwen/Qwen-7B1-Chat'
 
 
 def _get_args():
@@ -133,7 +133,7 @@ def _launch_demo(args, model, tokenizer, config):
 
         print(f"History: {_task_history}")
         _task_history.append((_query, full_response))
-        print(f"Qwen-7B-Chat: {_parse_text(full_response)}")
+        print(f"Qwen-7B1-Chat: {_parse_text(full_response)}")
 
     def regenerate(_chatbot, _task_history):
         if not _task_history:
@@ -158,19 +158,19 @@ def _launch_demo(args, model, tokenizer, config):
         gr.Markdown("""\
 <p align="center"><img src="https://modelscope.cn/api/v1/models/qwen/Qwen-7B-Chat/repo?
 Revision=master&FilePath=assets/logo.jpeg&View=true" style="height: 80px"/><p>""")
-        gr.Markdown("""<center><font size=8>Qwen-7B-Chat Bot</center>""")
+        gr.Markdown("""<center><font size=8>Qwen-7B1-Chat Bot</center>""")
         gr.Markdown(
             """\
-<center><font size=3>This WebUI is based on Qwen-7B-Chat, developed by Alibaba Cloud. \
+<center><font size=3>This WebUI is based on Qwen-7B1-Chat, developed by Alibaba Cloud. \
 (本WebUI基于Qwen-7B-Chat打造，实现聊天机器人功能。)</center>""")
         gr.Markdown("""\
-<center><font size=4>Qwen-7B <a href="https://modelscope.cn/models/qwen/Qwen-7B/summary">🤖 </a> 
+<center><font size=4>Qwen-7B1 <a href="https://modelscope.cn/models/qwen/Qwen-7B/summary">🤖 </a> 
 | <a href="https://huggingface.co/Qwen/Qwen-7B">🤗</a>&nbsp ｜ 
-Qwen-7B-Chat <a href="https://modelscope.cn/models/qwen/Qwen-7B-Chat/summary">🤖 </a> | 
+Qwen-7B1-Chat <a href="https://modelscope.cn/models/qwen/Qwen-7B-Chat/summary">🤖 </a> | 
 <a href="https://huggingface.co/Qwen/Qwen-7B-Chat">🤗</a>&nbsp ｜ 
 &nbsp<a href="https://github.com/QwenLM/Qwen-7B">Github</a></center>""")
 
-        chatbot = gr.Chatbot(label='Qwen-7B-Chat', elem_classes="control-height")
+        chatbot = gr.Chatbot(label='Qwen-7B1-Chat', elem_classes="control-height")
         query = gr.Textbox(lines=2, label='Input')
         task_history = gr.State([])
 
@@ -185,7 +185,7 @@ Qwen-7B-Chat <a href="https://modelscope.cn/models/qwen/Qwen-7B-Chat/summary">�
         regen_btn.click(regenerate, [chatbot, task_history], [chatbot], show_progress=True)
 
         gr.Markdown("""\
-<font size=2>Note: This demo is governed by the original license of Qwen-7B. \
+<font size=2>Note: This demo is governed by the original license of Qwen-7B1. \
 We strongly advise users not to knowingly generate or allow others to knowingly generate harmful content, \
 including hate speech, violence, pornography, deception, etc. \
 (注：本演示受Qwen-7B的许可协议限制。我们强烈建议，用户不应传播及不应允许他人传播以下内容，\
